@@ -83,7 +83,7 @@ exports.parseFile = function(sourcePath, callback) {
  * If no callback is given the function will run synchronously and return the result or throw an error.
  *
  * @param {string|Document} source - The XML content to validate with the schema, to be given as a string or a [libxmljs document]{@link https://github.com/polotek/libxmljs/wiki/Document}
- * @param {Schema~validateCallback} [callback] - The callback that handles the response. Expects err an array of validation errors.
+ * @param {Schema~validateCallback} [callback] - The callback that handles the response. Expects err and an array of validation errors.
  * @return {string|Document} Only if no callback is given. An array of validation errors, empty if ok.
  */
 Schema.prototype.validate = function(source, callback) {

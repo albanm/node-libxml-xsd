@@ -136,7 +136,7 @@ If no callback is given the function will run synchronously and return the resul
 **Params**
 
 - source `string` | `Document` - The XML content to validate with the schema, to be given as a string or a [libxmljs document](https://github.com/polotek/libxmljs/wiki/Document)  
-- \[callback\] <code>[validateCallback](#Schema..validateCallback)</code> - The callback that handles the response. Expects err an array of validation errors.  
+- \[callback\] <code>[validateCallback](#Schema..validateCallback)</code> - The callback that handles the response. Expects err and an array of validation errors.  
 
 **Returns**: `string` | `Document` - Only if no callback is given. An array of validation errors, empty if ok.  
 <a name="module_libxml-xsd..Schema#validateToFile"></a>
