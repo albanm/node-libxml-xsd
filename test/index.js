@@ -75,13 +75,11 @@ describe('node-libxml-xsd', function() {
 		it('should validate a schema to a libxmljs xml document', function() {
 			var doc = libxmljs.parseXml(docSource);
 			var validationErrors = schema.validate(doc);
-			validationErrors.should.be.type('object');
-			validationErrors.should.have.lengthOf(0);
+			should.not.exist(validationErrors);
 		});
 		it('should validate a schema to a xml string', function() {
 			var validationErrors = schema.validate(docSource);
-			validationErrors.should.be.type('object');
-			validationErrors.should.have.lengthOf(0);
+			should.not.exist(validationErrors);
 		});
 		it('should throw an error if given a bad xml', function() {
 			(function() {
@@ -101,16 +99,14 @@ describe('node-libxml-xsd', function() {
 			var doc = libxmljs.parseXml(docSource);
 			schema.validate(doc, function(err, validationErrors) {
 				should.not.exist(err);
-				validationErrors.should.be.type('object');
-				validationErrors.should.have.lengthOf(0);
+				should.not.exist(validationErrors);
 				callback();
 			});
 		});
 		it('should validate a schema to a xml string', function(callback) {
 			schema.validate(docSource, function(err, validationErrors) {
 				should.not.exist(err);
-				validationErrors.should.be.type('object');
-				validationErrors.should.have.lengthOf(0);
+				should.not.exist(validationErrors);
 				callback();
 			});
 		});
@@ -133,7 +129,7 @@ describe('node-libxml-xsd', function() {
 		it('should validate a schema to a xml file', function(callback) {
 			schema.validateToFile('./test/resources/chapter04.xml', function(err, validationErrors) {
 				should.not.exist(err);
-				validationErrors.should.have.lengthOf(0);
+				should.not.exist(validationErrors);
 				callback();
 			});
 		});

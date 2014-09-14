@@ -136,9 +136,9 @@ If no callback is given the function will run synchronously and return the resul
 **Params**
 
 - source `string` | `Document` - The XML content to validate with the schema, to be given as a string or a [libxmljs document](https://github.com/polotek/libxmljs/wiki/Document)  
-- \[callback\] <code>[validateCallback](#Schema..validateCallback)</code> - The callback that handles the response. Expects err and an array of validation errors.  
+- \[callback\] <code>[validateCallback](#Schema..validateCallback)</code> - The callback that handles the response. Expects err and an array of validation errors, null if none.  
 
-**Returns**: `string` | `Document` - Only if no callback is given. An array of validation errors, empty if ok.  
+**Returns**: `string` | `Document` - Only if no callback is given. An array of validation errors, null if none.  
 <a name="module_libxml-xsd..Schema#validateToFile"></a>
 ###schema.validateToFile(sourcePath, callback)
 Apply a schema to a XML file
@@ -146,6 +146,6 @@ Apply a schema to a XML file
 **Params**
 
 - sourcePath `string` - The path of the file to read  
-- callback <code>[validateToFileCallback](#Schema..validateToFileCallback)</code> - The callback that handles the response. Expects err and an array of validation errors.  
+- callback <code>[validateToFileCallback](#Schema..validateToFileCallback)</code> - The callback that handles the response. Expects err and an array of validation errors null if none.  
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.

@@ -83,8 +83,8 @@ exports.parseFile = function(sourcePath, callback) {
  * If no callback is given the function will run synchronously and return the result or throw an error.
  *
  * @param {string|Document} source - The XML content to validate with the schema, to be given as a string or a [libxmljs document]{@link https://github.com/polotek/libxmljs/wiki/Document}
- * @param {Schema~validateCallback} [callback] - The callback that handles the response. Expects err and an array of validation errors.
- * @return {string|Document} Only if no callback is given. An array of validation errors, empty if ok.
+ * @param {Schema~validateCallback} [callback] - The callback that handles the response. Expects err and an array of validation errors, null if none.
+ * @return {string|Document} Only if no callback is given. An array of validation errors, null if none.
  */
 Schema.prototype.validate = function(source, callback) {
 
@@ -103,24 +103,25 @@ Schema.prototype.validate = function(source, callback) {
 	if (callback) {
 		binding.validateAsync(this.schemaObj, source, function(err, validationErrors){
 			if (err) return callback(err);
-			return callback(null, validationErrors);
+			return callback(null, validationErrors.length > 0 ? validationErrors : null);
 		});
 	} else {
-		return binding.validateSync(this.schemaObj, source);
+		var validationErrors = binding.validateSync(this.schemaObj, source);
+		return validationErrors.length > 0 ? validationErrors : null;
 	}
 };
 /**
  * Callback to the Schema.validate function
  * @callback Schema~validateCallback
  * @param {error} [err] - Error when attempting to validate (not a validation error).
- * @param {array} [validationErrors] - A array of errors from validating the schema
+ * @param {array} [validationErrors] - A array of errors from validating the schema, null if none.
  */
 
 /**
  * Apply a schema to a XML file
  *
  * @param {string} sourcePath - The path of the file to read
- * @param {Schema~validateToFileCallback} callback The callback that handles the response. Expects err and an array of validation errors.
+ * @param {Schema~validateToFileCallback} callback The callback that handles the response. Expects err and an array of validation errors null if none.
  */
 Schema.prototype.validateToFile = function(sourcePath, callback) {
 	var that = this;
@@ -132,5 +133,6 @@ Schema.prototype.validateToFile = function(sourcePath, callback) {
 /**
  * Callback to the Schema.validateToFile function
  * @callback Schema~validateToFileCallback
- * @param {array} [errors] - A array of errors either from parsing the XML document if given as a string or from validating the schema
+ * @param {error} [err] - Error when attempting to validate (not a validation error).
+ * @param {array} [validationErrors] - A array of errors from validating the schema, null if none.
  */
