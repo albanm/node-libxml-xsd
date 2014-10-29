@@ -121,9 +121,9 @@ Schema.prototype.validate = function(source, callback) {
  * Apply a schema to a XML file
  *
  * @param {string} sourcePath - The path of the file to read
- * @param {Schema~validateToFileCallback} callback The callback that handles the response. Expects err and an array of validation errors null if none.
+ * @param {Schema~validateFileCallback} callback The callback that handles the response. Expects err and an array of validation errors null if none.
  */
-Schema.prototype.validateToFile = function(sourcePath, callback) {
+Schema.prototype.validateFile = function(sourcePath, callback) {
 	var that = this;
 	fs.readFile(sourcePath, 'utf8', function(err, data){
 		if (err) return callback(err);
@@ -131,8 +131,8 @@ Schema.prototype.validateToFile = function(sourcePath, callback) {
 	});
 };
 /**
- * Callback to the Schema.validateToFile function
- * @callback Schema~validateToFileCallback
+ * Callback to the Schema.validateFile function
+ * @callback Schema~validateFileCallback
  * @param {error} [err] - Error when attempting to validate (not a validation error).
  * @param {array} [validationErrors] - A array of errors from validating the schema, null if none.
  */
