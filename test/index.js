@@ -125,9 +125,9 @@ describe('node-libxml-xsd', function() {
 		});
 	});
 
-	describe('validateToFile function', function() {
+	describe('validateFile function', function() {
 		it('should validate a schema to a xml file', function(callback) {
-			schema.validateToFile('./test/resources/chapter04.xml', function(err, validationErrors) {
+			schema.validateFile('./test/resources/chapter04.xml', function(err, validationErrors) {
 				should.not.exist(err);
 				should.not.exist(validationErrors);
 				callback();
