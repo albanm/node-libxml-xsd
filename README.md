@@ -21,7 +21,7 @@ var xsd = require('libxml-xsd');
 xsd.parseFile(schemaPath, function(err, schema){
   schema.validate(documentString, function(err, validationErrors){
     // err contains any technical error
-    // validationError is an array, empty if the validation is ok
+    // validationError is an array, null if the validation is ok
   });  
 });
 ```
@@ -82,7 +82,7 @@ Node.js bindings for XSD validation from libxml
   * [class: libxml-xsd~Schema](#module_libxml-xsd..Schema)
     * [new libxml-xsd~Schema(schemaDoc, schemaObj)](#new_module_libxml-xsd..Schema)
     * [schema.validate(source, [callback])](#module_libxml-xsd..Schema#validate)
-    * [schema.validateToFile(sourcePath, callback)](#module_libxml-xsd..Schema#validateToFile)
+    * [schema.validateFile(sourcePath, callback)](#module_libxml-xsd..Schema#validateFile)
 
 <a name="module_libxml-xsd.parse"></a>
 ##libxml-xsd.parse(source, [callback])
@@ -112,7 +112,7 @@ Parse a XSD schema
 * [class: libxml-xsd~Schema](#module_libxml-xsd..Schema)
   * [new libxml-xsd~Schema(schemaDoc, schemaObj)](#new_module_libxml-xsd..Schema)
   * [schema.validate(source, [callback])](#module_libxml-xsd..Schema#validate)
-  * [schema.validateToFile(sourcePath, callback)](#module_libxml-xsd..Schema#validateToFile)
+  * [schema.validateFile(sourcePath, callback)](#module_libxml-xsd..Schema#validateFile)
 
 <a name="new_module_libxml-xsd..Schema"></a>
 ###new libxml-xsd~Schema(schemaDoc, schemaObj)
@@ -139,13 +139,13 @@ If no callback is given the function will run synchronously and return the resul
 - \[callback\] <code>[validateCallback](#Schema..validateCallback)</code> - The callback that handles the response. Expects err and an array of validation errors, null if none.  
 
 **Returns**: `string` | `Document` - Only if no callback is given. An array of validation errors, null if none.  
-<a name="module_libxml-xsd..Schema#validateToFile"></a>
-###schema.validateToFile(sourcePath, callback)
+<a name="module_libxml-xsd..Schema#validateFile"></a>
+###schema.validateFile(sourcePath, callback)
 Apply a schema to a XML file
 
 **Params**
 
 - sourcePath `string` - The path of the file to read  
-- callback <code>[validateToFileCallback](#Schema..validateToFileCallback)</code> - The callback that handles the response. Expects err and an array of validation errors null if none.  
+- callback <code>[validateFileCallback](#Schema..validateFileCallback)</code> - The callback that handles the response. Expects err and an array of validation errors null if none.  
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
