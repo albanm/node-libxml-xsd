@@ -61,7 +61,7 @@ to provide parallelized computation in node.js worker threads. This makes it non
 Note that libxmljs parsing doesn't use the work queue, so only a part of the process is actually parallelized.
 
 The tasks being mostly CPU bound and very fast it is not a big problem to use synchronous mode.
-But remember that it you use some includes the parsing task becomes IO bound.
+But remember that if you use some includes the parsing task becomes IO bound.
 
 Environment compatibility
 -------------------------
