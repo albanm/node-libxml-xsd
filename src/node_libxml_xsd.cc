@@ -44,6 +44,7 @@ class SchemaWorker : public NanAsyncWorker {
   // here, so everything we need for input and output
   // should go on `this`.
   void Execute () {
+    libxmljs::WorkerSentinel workerSentinel(workerParent);
   	parser_ctxt = xmlSchemaNewDocParserCtxt(doc->xml_obj);
     if (parser_ctxt != NULL) {
         result = xmlSchemaParse(parser_ctxt);
@@ -69,6 +70,7 @@ class SchemaWorker : public NanAsyncWorker {
   };
 
  private:
+  libxmljs::WorkerParent workerParent;
   libxmljs::XmlDocument* doc;
   xmlSchemaParserCtxtPtr parser_ctxt;
   xmlSchemaPtr result;
@@ -136,6 +138,7 @@ class ValidateWorker : public NanAsyncWorker {
   // here, so everything we need for input and output
   // should go on `this`.
   void Execute () {
+    libxmljs::WorkerSentinel workerSentinel(workerParent);
     xmlResetLastError();
 
     xmlSetStructuredErrorFunc(reinterpret_cast<void *>(&errors), PushErrorsToList);
@@ -174,6 +177,7 @@ class ValidateWorker : public NanAsyncWorker {
   };
 
   private:
+    libxmljs::WorkerParent workerParent;
     Schema* schema;
     libxmljs::XmlDocument* doc;
     xmlSchemaValidCtxtPtr valid_ctxt;
