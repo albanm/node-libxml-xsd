@@ -5,7 +5,7 @@
 
 #include <libxml/xmlschemas.h>
 
-class Schema : public node::ObjectWrap {
+class Schema : public Nan::ObjectWrap {
 	public:
 	    static void Init(v8::Handle<v8::Object> exports);
 	    static v8::Local<v8::Object> New(xmlSchemaPtr schema);
@@ -14,7 +14,7 @@ class Schema : public node::ObjectWrap {
 	private:
 	    explicit Schema(xmlSchemaPtr schema);
 	    ~Schema();
-	    static v8::Persistent<v8::Function> constructor;
+	    static Nan::Persistent<v8::Function> constructor;
 };
 
 #endif  // SRC_SCHEMA_H_

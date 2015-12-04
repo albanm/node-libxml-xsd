@@ -5,7 +5,7 @@
 
 using namespace v8;
 
-Persistent<Function> Schema::constructor;
+Nan::Persistent<Function> Schema::constructor;
 
 Schema::Schema(xmlSchemaPtr schemaPtr) : schema_obj(schemaPtr) {}
 
@@ -18,18 +18,18 @@ Schema::~Schema()
 
 void Schema::Init(Handle<Object> exports) {
 	 // Prepare constructor template
-    Local<FunctionTemplate> tpl = NanNew<FunctionTemplate>();
-    tpl->SetClassName(NanNew<String>("Schema"));
+    Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>();
+    tpl->SetClassName(Nan::New<String>("Schema").ToLocalChecked());
   	tpl->InstanceTemplate()->SetInternalFieldCount(1);
   	
-    NanAssignPersistent(constructor, tpl->GetFunction());
+    constructor.Reset(tpl->GetFunction());
 }
 
 // not called from node, private api
 Local<Object> Schema::New(xmlSchemaPtr schemaPtr) {
-    NanEscapableScope();
-    Local<Object> wrapper = NanNew(constructor)->NewInstance();
+    Nan::EscapableHandleScope scope;
+    Local<Object> wrapper = Nan::New(constructor)->NewInstance();
     Schema* schema = new Schema(schemaPtr);
     schema->Wrap(wrapper);
-    return NanEscapeScope(wrapper);
+    return scope.Escape(wrapper);
 }

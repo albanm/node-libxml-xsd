@@ -4,7 +4,7 @@
  */
 
 var fs = require('fs');
-var libxmljs = require('libxmljs');
+var libxmljs = require('libxmljs-mt');
 var binding = require('bindings')('node-libxml-xsd');
 
 /**
@@ -41,7 +41,7 @@ exports.parse = function(source, callback) {
 			throw err;
 		}
 	}
-	
+
 	if (callback) {
 		binding.schemaAsync(source, function(err, schema){
 			if (err) return callback(err);

@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 var should = require('should');
-var libxmljs = require("libxmljs");
+var libxmljs = require("libxmljs-mt");
 
 var xsd = require('../index');
 
