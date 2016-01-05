@@ -14,8 +14,27 @@
       ],
       'link_settings': {
         'libraries': [
-          '<@(xmljs_libraries)',
+          '<@(xmljs_libraries)'
         ]
+      },
+      'default_configuration': 'Release',
+      'configurations': {
+        'Debug': {
+          'defines': [ 'DEBUG', '_DEBUG' ],
+          'msvs_settings': {
+            'VCCLCompilerTool': {
+              'RuntimeLibrary': 1 # static debug
+            }
+          }
+        },
+        'Release': {
+          'defines': [ 'NDEBUG' ],
+          'msvs_settings': {
+            'VCCLCompilerTool': {
+              'RuntimeLibrary': 0 # static release
+            }
+          }
+        }
       }
     }
   ]

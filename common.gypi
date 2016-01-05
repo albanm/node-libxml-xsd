@@ -4,7 +4,8 @@
     'node_xmljs': '<!(node -p -e "require(\'path\').dirname(require.resolve(\'libxmljs-mt\'))")',
     'xmljs_include_dirs': [
       '<(node_xmljs)/src/',
-      '<(node_xmljs)/vendor/libxml/include'
+      '<(node_xmljs)/vendor/libxml/include',
+      '<(node_xmljs)/vendor/libxml.conf/include'
     ],
     'conditions': [
       ['OS=="win"', {
