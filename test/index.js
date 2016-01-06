@@ -1,9 +1,9 @@
 var fs = require('fs');
 
 var should = require('should');
-var libxmljs = require("libxmljs-mt");
 
 var xsd = require('../index');
+var libxmljs = xsd.libxmljs;
 
 describe('node-libxml-xsd', function() {
 	var schemaSource;

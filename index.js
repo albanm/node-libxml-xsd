@@ -8,6 +8,11 @@ var libxmljs = require('libxmljs-mt');
 var binding = require('bindings')('node-libxml-xsd');
 
 /**
+ * The libxmljs module. Prevents the need for a user's code to require it a second time. Also prevent weird bugs.
+ */
+exports.libxmljs = libxmljs;
+
+/**
  * A compiled schema. Do not call this constructor, instead use parse or parseFile.
  *
  * store both the source document and the parsed schema

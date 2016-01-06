@@ -31,6 +31,8 @@ Libxmljs integration
 
 Node-libxml-xsd depends on [libxmljs](https://github.com/polotek/libxmljs/issues/226) that bundles libxml.
 
+The libxmljs module required by node-libxml-xsd is exposed as ```require('libxml-xsd').libxmljs```. This prevents depending on libxmljs twice which is not optimal and source of weird bugs.
+
 It is possible to work with libxmljs documents instead of strings as inputs to the *parse()* and *validate()* functions.
 
 Imports and includes
