@@ -8,6 +8,16 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - node --version
   - npm --version
+  - mkdir tmp
+  - cd tmp
+  - git clone https://github.com/albanm/libxmljs.git
+  - cd libxmljs
+  - git submodule init
+  - git submodule update
+  - npm install
+  - npm link
+  - cd ../../
+  - npm link libxmljs-mt
 
 build_script:
   - npm install
