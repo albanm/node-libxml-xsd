@@ -13,6 +13,11 @@
 
 using namespace v8;
 
+void none(void *ctx, const char *msg, ...) {
+  // do nothing
+  return;
+}
+
 NAN_METHOD(SchemaSync) {
   	Nan::HandleScope scope;
 
@@ -22,6 +27,11 @@ NAN_METHOD(SchemaSync) {
     if (parser_ctxt == NULL) {
         return Nan::ThrowError("Could not create context for schema parser");
     }
+    xmlSchemaValidityErrorFunc err;
+    xmlSchemaValidityWarningFunc warn;
+    void* ctx;
+    xmlSchemaGetParserErrors(parser_ctxt, &err, &warn, &ctx);
+    xmlSchemaSetParserErrors(parser_ctxt, err, (xmlSchemaValidityWarningFunc) none, ctx);
     xmlSchemaPtr schema = xmlSchemaParse(parser_ctxt);
     if (schema == NULL) {
         return Nan::ThrowError("Invalid XSD schema");
@@ -47,6 +57,11 @@ class SchemaWorker : public Nan::AsyncWorker {
     libxmljs::WorkerSentinel workerSentinel(workerParent);
   	parser_ctxt = xmlSchemaNewDocParserCtxt(doc->xml_obj);
     if (parser_ctxt != NULL) {
+        xmlSchemaValidityErrorFunc err;
+        xmlSchemaValidityWarningFunc warn;
+        void* ctx;
+        xmlSchemaGetParserErrors(parser_ctxt, &err, &warn, &ctx);
+        xmlSchemaSetParserErrors(parser_ctxt, err, (xmlSchemaValidityWarningFunc) none, ctx);
         result = xmlSchemaParse(parser_ctxt);
     }
   }
