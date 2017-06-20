@@ -12,6 +12,10 @@ Installation
 
 	npm install libxml-xsd
 
+On windows there are several prerequisites that need to be met before an install will work:
+1. Run `npm install --global --production windows-build-tools`
+2. Then run `npm install --save libxml-xsd`
+
 Basic usage
 -----------
 
