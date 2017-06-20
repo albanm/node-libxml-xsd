@@ -13,7 +13,7 @@ Installation
 	npm install libxml-xsd
 
 On windows there are several prerequisites that need to be met before an install will work.
-[https://github.com/felixrieseberg/windows-build-tools](Windows-Build-Tools) is a great helper package for this task.
+[Windows-Build-Tools](https://github.com/felixrieseberg/windows-build-tools) is a great helper module for this task.
 
     npm install --global --production windows-build-tools
     npm install libxml-xsd
