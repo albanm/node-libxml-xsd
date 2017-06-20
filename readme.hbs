@@ -12,6 +12,12 @@ Installation
 
 	npm install libxml-xsd
 
+On windows there are several prerequisites that need to be met before an install will work.
+[https://github.com/felixrieseberg/windows-build-tools](Windows-Build-Tools) is a great helper package for this task.
+
+    npm install --global --production windows-build-tools
+    npm install libxml-xsd
+
 Basic usage
 -----------
 
@@ -21,8 +27,8 @@ var xsd = require('libxml-xsd');
 xsd.parseFile(schemaPath, function(err, schema){
   schema.validate(documentString, function(err, validationErrors){
     // err contains any technical error
-    // validationError is an array, empty if the validation is ok
-  });  
+    // validationError is an array, null if the validation is ok
+  });
 });
 ```
 
@@ -30,6 +36,8 @@ Libxmljs integration
 --------------------
 
 Node-libxml-xsd depends on [libxmljs](https://github.com/polotek/libxmljs/issues/226) that bundles libxml.
+
+The libxmljs module required by node-libxml-xsd is exposed as ```require('libxml-xsd').libxmljs```. This prevents depending on libxmljs twice which is not optimal and source of weird bugs.
 
 It is possible to work with libxmljs documents instead of strings as inputs to the *parse()* and *validate()* functions.
 
@@ -61,7 +69,7 @@ to provide parallelized computation in node.js worker threads. This makes it non
 Note that libxmljs parsing doesn't use the work queue, so only a part of the process is actually parallelized.
 
 The tasks being mostly CPU bound and very fast it is not a big problem to use synchronous mode.
-But remember that it you use some includes the parsing task becomes IO bound.
+But remember that if you use some includes the parsing task becomes IO bound.
 
 Environment compatibility
 -------------------------
@@ -72,9 +80,6 @@ Node-libxml-xsd depends on [node-gyp](https://github.com/TooTallNate/node-gyp), 
 
 API Reference
 =============
-{{#module name="libxml-xsd"~}}
-  {{>body~}}
-  {{>exported~}}
-{{/module~}}
+{{>main}}
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.

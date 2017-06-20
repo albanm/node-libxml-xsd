@@ -26,12 +26,12 @@
   "license": "MIT",
   "dependencies": {
     "bindings": "^1.2.1",
-    "libxmljs-mt": "0.18.0",
-    "nan": "^2.4.0"
+    "libxmljs-mt": "^0.18.0",
+    "nan": "^2.6.2"
   },
   "devDependencies": {
     "mocha": "^1.21.4",
     "should": "^4.0.4",
-    "jsdoc-to-markdown": "^0.5.7"
+    "jsdoc-to-markdown": "^3.0.0"
   }
 }
