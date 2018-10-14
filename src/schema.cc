@@ -21,14 +21,14 @@ void Schema::Init(Handle<Object> exports) {
     Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>();
     tpl->SetClassName(Nan::New<String>("Schema").ToLocalChecked());
   	tpl->InstanceTemplate()->SetInternalFieldCount(1);
-  	
+
     constructor.Reset(tpl->GetFunction());
 }
 
 // not called from node, private api
 Local<Object> Schema::New(xmlSchemaPtr schemaPtr) {
     Nan::EscapableHandleScope scope;
-    Local<Object> wrapper = Nan::New(constructor)->NewInstance();
+    Local<Object> wrapper = Nan::NewInstance(Nan::New(constructor)).ToLocalChecked();
     Schema* schema = new Schema(schemaPtr);
     schema->Wrap(wrapper);
     return scope.Escape(wrapper);
